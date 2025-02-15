@@ -133,19 +133,12 @@ int main(int argc, char **argv) {
     printf("number of vertices: %u, number of edges: %u\n", num_vertices, num_edges);
 
     double transfer_start_time = get_time_in_seconds();
-    int edges_per_dpu = num_edges / nr_dpus;
-    int remaining_edges = num_edges % nr_dpus;
-    int edge_start = 0;
-    int *temp_dpu_distances = dpu_distances;
 
     int dpu_id = 0;
     DPU_FOREACH(set, dpu) {
     printf("DPU %d is assigned:\n", dpu_id);
     printf("   - Number of Vertices: %d\n", num_vertices);
     printf("   - Number of Edges: %d\n", num_edges);
-        int allocated_edges = edges_per_dpu + (dpu_id < remaining_edges ? 1 : 0);
-        int edge_end = edge_start + allocated_edges;
-        int node_min = INFINITY, node_max = -1;
 
     DPU_ASSERT(dpu_copy_to(dpu, "edges", 0, edges, num_edges * sizeof(Edge)));
     DPU_ASSERT(dpu_copy_to(dpu, "distances", 0, dpu_distances, num_vertices * sizeof(int)));
