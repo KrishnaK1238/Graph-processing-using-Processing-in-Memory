@@ -125,7 +125,7 @@ int main(int argc, char **argv) {
 
     double start_time = get_time_in_seconds();
 
-    uint32_t nr_dpus = 8;
+    uint32_t nr_dpus = 4;
     DPU_ASSERT(dpu_alloc(nr_dpus, NULL, &set));
     DPU_ASSERT(dpu_load(set, "./sssp_dpu", NULL));
     DPU_ASSERT(dpu_get_nr_dpus(set, &nr_dpus));
@@ -133,12 +133,26 @@ int main(int argc, char **argv) {
     printf("number of vertices: %u, number of edges: %u\n", num_vertices, num_edges);
 
     double transfer_start_time = get_time_in_seconds();
+    int edges_per_dpu = num_edges / nr_dpus;
+    int remaining_edges = num_edges % nr_dpus;
+    int edge_start = 0;
+    int *temp_dpu_distances = dpu_distances;
 
+    int dpu_id = 0;
     DPU_FOREACH(set, dpu) {
-        DPU_ASSERT(dpu_copy_to(dpu, "edges", 0, edges, num_edges * sizeof(Edge)));
-        DPU_ASSERT(dpu_copy_to(dpu, "distances", 0, dpu_distances, num_vertices * sizeof(int)));
-        DPU_ASSERT(dpu_copy_to(dpu, "NUM_VERTICES", 0, &num_vertices, sizeof(num_vertices)));
-        DPU_ASSERT(dpu_copy_to(dpu, "NUM_EDGES", 0, &num_edges, sizeof(num_edges)));
+    printf("DPU %d is assigned:\n", dpu_id);
+    printf("   - Number of Vertices: %d\n", num_vertices);
+    printf("   - Number of Edges: %d\n", num_edges);
+        int allocated_edges = edges_per_dpu + (dpu_id < remaining_edges ? 1 : 0);
+        int edge_end = edge_start + allocated_edges;
+        int node_min = INFINITY, node_max = -1;
+
+    DPU_ASSERT(dpu_copy_to(dpu, "edges", 0, edges, num_edges * sizeof(Edge)));
+    DPU_ASSERT(dpu_copy_to(dpu, "distances", 0, dpu_distances, num_vertices * sizeof(int)));
+    DPU_ASSERT(dpu_copy_to(dpu, "NUM_VERTICES", 0, &num_vertices, sizeof(num_vertices)));
+    DPU_ASSERT(dpu_copy_to(dpu, "NUM_EDGES", 0, &num_edges, sizeof(num_edges)));
+
+    dpu_id++;
     }
 
     double transfer_end_time = get_time_in_seconds();
@@ -170,11 +184,12 @@ int main(int argc, char **argv) {
     }
     
     for (int i = 0; i < num_vertices; i++){
-    	if (cpu_distances[i] != dpu_distances[i]){
-    		printf("i: %d, cpu distances does not match with dpu distances\n", i);
-    	}
+    	if (cpu_distances[i] == dpu_distances[i]){
+    		printf("i: %d, cpu distances equals to dpu distances\n", i);
+    	} else if (cpu_distances[i] != dpu_distances[i]){
+            printf("i: %d, cpu distances does not equal to dpu distances\n", i);
+        }
     }
-    printf("cpu and dpu are equal");
 
     printf("\nMetrics:\n");
     printf("Total Execution Time: %.3f ms\n", total_execution_time_ms);
@@ -206,4 +221,3 @@ int main(int argc, char **argv) {
 
     return 0;
 }
-
