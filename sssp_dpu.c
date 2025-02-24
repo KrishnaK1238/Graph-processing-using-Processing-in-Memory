@@ -23,11 +23,11 @@ int main() {
     if (tasklet_id == 0){
     	printf("Number of tasklets: %u \n", NR_TASKLETS);
     	}
- // Ensure Bellman-Ford runs for exactly V-1 iterations while allowing early stopping
-for (int iter = 0; iter < NUM_VERTICES - 1; iter++) {  // ✅ Force exactly V-1 iterations
+
+for (int iter = 0; iter < NUM_VERTICES - 1; iter++) {  
     updated = false;
 
-    for (int i = 0; i < NUM_EDGES; i++) {  // ✅ Process all edges
+    for (int i = 0; i < NUM_EDGES; i++) { 
         int u = edges[i].u;
         int v = edges[i].v;
         int weight = edges[i].weight;
@@ -38,7 +38,7 @@ for (int iter = 0; iter < NUM_VERTICES - 1; iter++) {  // ✅ Force exactly V-1 
         }
     }
 
-    if (!updated) {  // ✅ Stop early if no changes (optimization)
+    if (!updated) {  
         break;
     }
 }
