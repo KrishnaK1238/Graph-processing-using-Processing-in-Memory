@@ -125,8 +125,8 @@ int main(int argc, char **argv) {
 
     double start_time = get_time_in_seconds();
 
-    uint32_t nr_dpus = 4;
-    DPU_ASSERT(dpu_alloc(nr_dpus, NULL, &set));
+    uint32_t nr_dpus = 63;
+    DPU_ASSERT(dpu_alloc(nr_dpus, "backend=simulator", &set));
     DPU_ASSERT(dpu_load(set, "./sssp_dpu", NULL));
     DPU_ASSERT(dpu_get_nr_dpus(set, &nr_dpus));
     printf("Number of DPUs allocated: %u\n", nr_dpus);
@@ -136,10 +136,7 @@ int main(int argc, char **argv) {
 
     int dpu_id = 0;
     DPU_FOREACH(set, dpu) {
-    printf("DPU %d is assigned:\n", dpu_id);
-    printf("   - Number of Vertices: %d\n", num_vertices);
-    printf("   - Number of Edges: %d\n", num_edges);
-
+   
     DPU_ASSERT(dpu_copy_to(dpu, "edges", 0, edges, num_edges * sizeof(Edge)));
     DPU_ASSERT(dpu_copy_to(dpu, "distances", 0, dpu_distances, num_vertices * sizeof(int)));
     DPU_ASSERT(dpu_copy_to(dpu, "NUM_VERTICES", 0, &num_vertices, sizeof(num_vertices)));
@@ -176,13 +173,7 @@ int main(int argc, char **argv) {
         printf("Vertex %d: %d\n", i, dpu_distances[i]);
     }
     
-    for (int i = 0; i < num_vertices; i++){
-    	if (cpu_distances[i] == dpu_distances[i]){
-    		printf("i: %d, cpu distances equals to dpu distances\n", i);
-    	} else if (cpu_distances[i] != dpu_distances[i]){
-            printf("i: %d, cpu distances does not equal to dpu distances\n", i);
-        }
-    }
+   
 
     printf("\nMetrics:\n");
     printf("Total Execution Time: %.3f ms\n", total_execution_time_ms);
