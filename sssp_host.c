@@ -95,7 +95,7 @@ int main(int argc, char **argv) {
     dpu_distances[0] = 0;
 
     double start_time = get_time_in_seconds();
-    int32_t NR_DPUS = 64;
+    int32_t NR_DPUS = 6;
 
     DPU_ASSERT(dpu_alloc(NR_DPUS, "backend=simulator", &set));
     DPU_ASSERT(dpu_load(set, "./sssp_dpu", NULL));
@@ -114,7 +114,7 @@ int main(int argc, char **argv) {
         DPU_ASSERT(dpu_copy_to(dpu, "NUM_VERTICES", 0, &num_vertices, sizeof(num_vertices)));
         DPU_ASSERT(dpu_copy_to(dpu, "NUM_EDGES", 0, &partition_size, sizeof(partition_size)));
 
-        dpu_id++;  // 🔥 FIXED: Increment `dpu_id` inside loop
+        dpu_id++;  // FIXED: Increment `dpu_id` inside loop
     }
     DPU_FOREACH(set, dpu) {
         DPU_ASSERT(dpu_copy_to(dpu, "distances", 0, dpu_distances, num_vertices * sizeof(int)));
@@ -152,6 +152,8 @@ int main(int argc, char **argv) {
     printf("\nFirst 10 distances:\n");
     for (int i = 0; i < 10 && i < num_vertices; i++) {
         printf("Vertex %d: CPU = %d, DPU = %d", i, cpu_distances[i], dpu_distances[i]);
+        
+
         if (cpu_distances[i] != dpu_distances[i]) {
             printf("  [Mismatch!]");
         }
