@@ -60,7 +60,7 @@ double cpu_sssp(int num_vertices, int num_edges, Edge *edges, int *cpu_distances
     }
 
     double end_time = get_time_in_seconds();
-    return (end_time - start_time) * 1000; // Execution time in ms
+    return (end_time - start_time) * 1000; 
 }
 
 int main(int argc, char **argv) {
@@ -114,7 +114,7 @@ int main(int argc, char **argv) {
         DPU_ASSERT(dpu_copy_to(dpu, "NUM_VERTICES", 0, &num_vertices, sizeof(num_vertices)));
         DPU_ASSERT(dpu_copy_to(dpu, "NUM_EDGES", 0, &partition_size, sizeof(partition_size)));
 
-        dpu_id++;  // FIXED: Increment `dpu_id` inside loop
+        dpu_id++;
     }
     DPU_FOREACH(set, dpu) {
         DPU_ASSERT(dpu_copy_to(dpu, "distances", 0, dpu_distances, num_vertices * sizeof(int)));
