@@ -1,0 +1,88 @@
+Running SSSP on CPU...
+CPU Execution Time: 5879.572 ms
+DPU 0 is handling edges [0 - 781] (782 edges)
+DPU 1 is handling edges [782 - 1563] (782 edges)
+DPU 2 is handling edges [1564 - 2345] (782 edges)
+DPU 3 is handling edges [2346 - 3127] (782 edges)
+DPU 4 is handling edges [3128 - 3909] (782 edges)
+DPU 5 is handling edges [3910 - 4691] (782 edges)
+DPU 6 is handling edges [4692 - 5473] (782 edges)
+DPU 7 is handling edges [5474 - 6255] (782 edges)
+DPU 8 is handling edges [6256 - 7037] (782 edges)
+DPU 9 is handling edges [7038 - 7819] (782 edges)
+DPU 10 is handling edges [7820 - 8601] (782 edges)
+DPU 11 is handling edges [8602 - 9383] (782 edges)
+DPU 12 is handling edges [9384 - 10165] (782 edges)
+DPU 13 is handling edges [10166 - 10947] (782 edges)
+DPU 14 is handling edges [10948 - 11729] (782 edges)
+DPU 15 is handling edges [11730 - 12511] (782 edges)
+DPU 16 is handling edges [12512 - 13293] (782 edges)
+DPU 17 is handling edges [13294 - 14075] (782 edges)
+DPU 18 is handling edges [14076 - 14857] (782 edges)
+DPU 19 is handling edges [14858 - 15639] (782 edges)
+DPU 20 is handling edges [15640 - 16421] (782 edges)
+DPU 21 is handling edges [16422 - 17203] (782 edges)
+DPU 22 is handling edges [17204 - 17985] (782 edges)
+DPU 23 is handling edges [17986 - 18767] (782 edges)
+DPU 24 is handling edges [18768 - 19549] (782 edges)
+DPU 25 is handling edges [19550 - 20331] (782 edges)
+DPU 26 is handling edges [20332 - 21113] (782 edges)
+DPU 27 is handling edges [21114 - 21895] (782 edges)
+DPU 28 is handling edges [21896 - 22677] (782 edges)
+DPU 29 is handling edges [22678 - 23459] (782 edges)
+DPU 30 is handling edges [23460 - 24241] (782 edges)
+DPU 31 is handling edges [24242 - 25023] (782 edges)
+DPU 32 is handling edges [25024 - 25805] (782 edges)
+DPU 33 is handling edges [25806 - 26587] (782 edges)
+DPU 34 is handling edges [26588 - 27369] (782 edges)
+DPU 35 is handling edges [27370 - 28151] (782 edges)
+DPU 36 is handling edges [28152 - 28933] (782 edges)
+DPU 37 is handling edges [28934 - 29715] (782 edges)
+DPU 38 is handling edges [29716 - 30497] (782 edges)
+DPU 39 is handling edges [30498 - 31279] (782 edges)
+DPU 40 is handling edges [31280 - 32061] (782 edges)
+DPU 41 is handling edges [32062 - 32843] (782 edges)
+DPU 42 is handling edges [32844 - 33625] (782 edges)
+DPU 43 is handling edges [33626 - 34407] (782 edges)
+DPU 44 is handling edges [34408 - 35189] (782 edges)
+DPU 45 is handling edges [35190 - 35971] (782 edges)
+DPU 46 is handling edges [35972 - 36753] (782 edges)
+DPU 47 is handling edges [36754 - 37535] (782 edges)
+DPU 48 is handling edges [37536 - 38317] (782 edges)
+DPU 49 is handling edges [38318 - 39099] (782 edges)
+DPU 50 is handling edges [39100 - 39881] (782 edges)
+DPU 51 is handling edges [39882 - 40663] (782 edges)
+DPU 52 is handling edges [40664 - 41445] (782 edges)
+DPU 53 is handling edges [41446 - 42227] (782 edges)
+DPU 54 is handling edges [42228 - 43009] (782 edges)
+DPU 55 is handling edges [43010 - 43791] (782 edges)
+DPU 56 is handling edges [43792 - 44573] (782 edges)
+DPU 57 is handling edges [44574 - 45355] (782 edges)
+DPU 58 is handling edges [45356 - 46137] (782 edges)
+DPU 59 is handling edges [46138 - 46919] (782 edges)
+DPU 60 is handling edges [46920 - 47701] (782 edges)
+DPU 61 is handling edges [47702 - 48483] (782 edges)
+DPU 62 is handling edges [48484 - 49265] (782 edges)
+DPU 63 is handling edges [49266 - 49999] (734 edges)
+
+First 10 distances:
+Vertex 0: CPU = 0, DPU = 0
+Vertex 1: CPU = 435, DPU = 435
+Vertex 2: CPU = 1000000, DPU = 1000000
+Vertex 3: CPU = 396, DPU = 396
+Vertex 4: CPU = 304, DPU = 304
+Vertex 5: CPU = 448, DPU = 448
+Vertex 6: CPU = 367, DPU = 367
+Vertex 7: CPU = 416, DPU = 416
+Vertex 8: CPU = 611, DPU = 611
+Vertex 9: CPU = 430, DPU = 430
+
+Comparison of CPU and DPU Results:
+Matching distances: 20000
+Mismatched distances: 0
+
+Metrics:
+CPU Execution Time: 5879.572 ms
+DPU Execution Time: 2786.538 ms
+CPU to DPU Transfer Time: 15.808 ms
+DPU to CPU Transfer Time: 3.021 ms

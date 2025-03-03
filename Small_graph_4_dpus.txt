@@ -1,0 +1,29 @@
+Running SSSP on CPU...
+CPU Execution Time: 441.378 ms
+DPU 0 is handling edges [0 - 4999] (5000 edges)
+DPU 1 is handling edges [5000 - 9999] (5000 edges)
+DPU 2 is handling edges [10000 - 14999] (5000 edges)
+DPU 3 is handling edges [15000 - 19999] (5000 edges)
+
+First 10 distances:
+Vertex 0: CPU = 0, DPU = 0
+Vertex 1: CPU = 229, DPU = 229
+Vertex 2: CPU = 236, DPU = 236
+Vertex 3: CPU = 244, DPU = 244
+Vertex 4: CPU = 147, DPU = 147
+Vertex 5: CPU = 251, DPU = 251
+Vertex 6: CPU = 208, DPU = 208
+Vertex 7: CPU = 137, DPU = 137
+Vertex 8: CPU = 168, DPU = 168
+Vertex 9: CPU = 168, DPU = 168
+
+Comparison of CPU and DPU Results:
+Matching distances: 5000
+Mismatched distances: 0
+
+Metrics:
+CPU Execution Time: 441.378 ms
+DPU Execution Time: 2198.691 ms
+CPU to DPU Transfer Time: 0.432 ms
+DPU to CPU Transfer Time: 0.066 ms
+
