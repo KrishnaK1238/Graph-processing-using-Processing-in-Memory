@@ -1,0 +1,79 @@
+large graph 90dpus
+
+Running SSSP on CPU...
+CPU Execution Time: 21084.518 ms
+First 10 distances:
+Vertex 0: CPU = 0, DPU = 0
+Vertex 1: CPU = 975, DPU = 975
+Vertex 2: CPU = 954, DPU = 954
+Vertex 3: CPU = 825, DPU = 825
+Vertex 4: CPU = 754, DPU = 754
+Vertex 5: CPU = 808, DPU = 808
+Vertex 6: CPU = 741, DPU = 741
+Vertex 7: CPU = 824, DPU = 824
+Vertex 8: CPU = 1000000, DPU = 1000000
+Vertex 9: CPU = 672, DPU = 672
+
+Comparison of CPU and DPU Results:
+Matching distances: 40000
+Mismatched distances: 0
+
+Metrics:
+CPU Execution Time: 21084.518 ms
+DPU Execution Time: 15117.194 ms
+CPU to DPU Transfer Time: 94.697 ms
+DPU to CPU Transfer Time: 207.473 ms
+
+medium graph 40 dpus
+
+Running SSSP on CPU...
+CPU Execution Time: 5270.968 ms
+
+First 10 distances:
+Vertex 0: CPU = 0, DPU = 0
+Vertex 1: CPU = 435, DPU = 435
+Vertex 2: CPU = 1000000, DPU = 1000000
+Vertex 3: CPU = 396, DPU = 396
+Vertex 4: CPU = 304, DPU = 304
+Vertex 5: CPU = 448, DPU = 448
+Vertex 6: CPU = 367, DPU = 367
+Vertex 7: CPU = 416, DPU = 416
+Vertex 8: CPU = 611, DPU = 611
+Vertex 9: CPU = 430, DPU = 430
+
+Comparison of CPU and DPU Results:
+Matching distances: 20000
+Mismatched distances: 0
+
+Metrics:
+CPU Execution Time: 5270.968 ms
+DPU Execution Time: 2066.886 ms
+CPU to DPU Transfer Time: 26.280 ms
+DPU to CPU Transfer Time: 48.367 ms
+
+small graph 16 dpus
+
+Running SSSP on CPU...
+CPU Execution Time: 410.650 ms
+
+First 10 distances:
+Vertex 0: CPU = 0, DPU = 0
+Vertex 1: CPU = 229, DPU = 229
+Vertex 2: CPU = 236, DPU = 236
+Vertex 3: CPU = 244, DPU = 244
+Vertex 4: CPU = 147, DPU = 147
+Vertex 5: CPU = 251, DPU = 251
+Vertex 6: CPU = 208, DPU = 208
+Vertex 7: CPU = 137, DPU = 137
+Vertex 8: CPU = 168, DPU = 168
+Vertex 9: CPU = 168, DPU = 168
+
+Comparison of CPU and DPU Results:
+Matching distances: 5000
+Mismatched distances: 0
+
+Metrics:
+CPU Execution Time: 410.650 ms
+DPU Execution Time: 266.327 ms
+CPU to DPU Transfer Time: 7.477 ms
+DPU to CPU Transfer Time: 5.627 ms
