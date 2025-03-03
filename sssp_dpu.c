@@ -24,14 +24,13 @@ __host int NUM_EDGES;
 int main() {
     bool updated = true;
     uint32_t tasklet_id = me();
-    printf("tasklet_id %u \n", tasklet_id);
-    if (tasklet_id == 0){
-    	printf("Number of tasklets: %u \n", NR_TASKLETS);
-    	}
+    printf("tasklet_id %u: stack = %u \n", tasklet_id, check_stack());
+    
 
     int edges_per_tasklet = NUM_EDGES / NR_TASKLETS;
     int start = tasklet_id * edges_per_tasklet;
     int end = (tasklet_id == NR_TASKLETS - 1) ? NUM_EDGES : (start + edges_per_tasklet);
+
 
     for (int iter = 0; iter < NUM_VERTICES - 1; iter++) {  
         updated = false;
@@ -47,9 +46,7 @@ int main() {
             }
         }
 
-        if (!updated) {  
-        break;
-    }
+        if (!updated) break;
 }
 
     return 0;
