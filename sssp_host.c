@@ -49,6 +49,7 @@ double cpu_sssp(int num_vertices, int num_edges, Edge *edges, int *cpu_distances
 
     double start_time = get_time_in_seconds(); // CPU execution time starts
 
+
     for (int i = 0; i < num_vertices - 1; i++) { // Perform (num_vertices - 1) iterations to relax all edges
 
         for (int j = 0; j < num_edges; j++) { // Iterate through all edges in the graph
@@ -111,6 +112,7 @@ int main(int argc, char **argv) {
     double start_time = get_time_in_seconds(); // start DPU execution timer
     // Allocate DPUs
     int32_t NR_DPUS = 16;
+    printf("Number of DPUs: %d\n", NR_DPUS);
     DPU_ASSERT(dpu_alloc(NR_DPUS, "backend=simulator", &set));
     DPU_ASSERT(dpu_load(set, "./sssp_dpu", NULL));
 
@@ -169,17 +171,7 @@ int main(int argc, char **argv) {
             DPU_ASSERT(dpu_copy_to(dpu, "distances", 0, dpu_distances, num_vertices * sizeof(int32_t)));
         }
     }
-    printf("\nFirst 10 distances:\n");
-    for (int i = 0; i < 10 && i < num_vertices; i++) {
-        printf("Vertex %d: CPU = %d, DPU = %d", i, cpu_distances[i], dpu_distances[i]);
-        
-
-        if (cpu_distances[i] != dpu_distances[i]) {
-            printf("  [Mismatch!]");
-        }
-        printf("\n");
-    }
-
+  
 
 
     double dpu_to_cpu_start_time = get_time_in_seconds();
@@ -191,6 +183,8 @@ int main(int argc, char **argv) {
 
     double end_time = get_time_in_seconds();
     double total_execution_time_ms = (end_time - start_time) * 1000;
+    printf("Number of Vertices: %d\n", num_vertices);
+    printf("Number of Edges: %d\n", num_edges);
 
     printf("\nComparison of CPU and DPU Results:\n");
     int correct = 0, incorrect = 0;
